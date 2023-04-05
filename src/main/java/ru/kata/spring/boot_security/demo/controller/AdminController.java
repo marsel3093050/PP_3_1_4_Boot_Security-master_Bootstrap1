@@ -33,6 +33,9 @@ public class AdminController {
         model.addAttribute("users", userService.getAllUserList());
         model.addAttribute("authUser", userService.findByUserName(currentUser));
         model.addAttribute("userRoles", roleService.getListRoles());
+        model.addAttribute("userInfo", userService.findByUserName(principal.getName()));
+
+
 
         model.addAttribute("new_user", new User());
         model.addAttribute("edit_user", new User());
@@ -66,6 +69,5 @@ public class AdminController {
         userService.update(id, updatedUser);
         return "redirect:/admin";
     }
-
 
 }
