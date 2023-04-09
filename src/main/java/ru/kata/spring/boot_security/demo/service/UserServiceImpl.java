@@ -16,13 +16,13 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository, @Lazy BCryptPasswordEncoder bCryptPasswordEncoder) {
+                           RoleRepository roleRepository, @Lazy BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.passwordEncoder = passwordEncoder;
 
     }
 
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void addUser(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
             updatedUser.setPassword(userRepository.findById(updatedUser.getId()).get().getPassword());
         } else {
-            updatedUser.setPassword(bCryptPasswordEncoder.encode(pass));
+            updatedUser.setPassword(passwordEncoder.encode(pass));
         }
         userRepository.save(updatedUser);
     }

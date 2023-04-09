@@ -17,7 +17,9 @@ public class LoginController {
         return "login";
     }
     @PostMapping("/login")
-    public String login(@RequestParam String username, @RequestParam String password, Model model) {
+    public String login(@RequestParam String username,
+                        @RequestParam String password,
+                        Model model) {
         return "login";
     }
 

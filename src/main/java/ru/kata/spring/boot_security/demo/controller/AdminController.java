@@ -35,8 +35,6 @@ public class AdminController {
         model.addAttribute("userRoles", roleService.getListRoles());
         model.addAttribute("userInfo", userService.findByUserName(principal.getName()));
 
-
-
         model.addAttribute("new_user", new User());
         model.addAttribute("edit_user", new User());
         model.addAttribute("roles", roleService.getListRoles());
@@ -47,8 +45,6 @@ public class AdminController {
     public String deleteUser(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/admin";
-
-
     }
 
     @PostMapping("")

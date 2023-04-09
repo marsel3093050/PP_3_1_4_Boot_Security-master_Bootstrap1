@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,8 @@ public class User implements UserDetails {
     @NotEmpty
     @Column(unique = true)
     private String username;
+    @Column(name = "password", nullable = false)
+//    @Size(min = 8, max = 50, message = "Минимальное колличество символов 8")
     @NotEmpty
     private String password;
     @NotEmpty
